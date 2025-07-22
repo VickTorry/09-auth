@@ -6,6 +6,11 @@ export interface FetchNotesResponse {
   totalPages: number;
 }
 
+const nextServer = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  withCredentials: true, // дозволяє axios працювати з cookie
+});
+
 
 export const fetchNotes = async (
   page = 1,
@@ -19,8 +24,8 @@ export const fetchNotes = async (
   search,
   tag,
 });
-  const response = await axios.get<FetchNotesResponse>(
-    'https://notehub-public.goit.study/api/notes',
+  const response = await nextServer.get<FetchNotesResponse>(
+    '/notes',
     {
       params: {
         page,
@@ -41,8 +46,8 @@ export const fetchNotes = async (
  * Fetch a single note by ID.
  */
 export const fetchNoteById = async (id: number): Promise<Note> => {
-  const response = await axios.get<Note>(
-    `https://notehub-public.goit.study/api/notes/${id}`,
+  const response = await nextServer.get<Note>(
+    `/notes/${id}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
@@ -61,8 +66,8 @@ export const createNote = async (note: {
   content: string;
   tag: Note['tag'];
 }): Promise<Note> => {
-  const response = await axios.post<Note>(
-    'https://notehub-public.goit.study/api/notes',
+  const response = await nextServer.post<Note>(
+    '/notes',
     note,
     {
       headers: {
@@ -78,8 +83,8 @@ export const createNote = async (note: {
  * Delete a note by ID.
  */
 export const deleteNote = async (id: number): Promise<Note> => {
-  const response = await axios.delete<Note>(
-    `https://notehub-public.goit.study/api/notes/${id}`,
+  const response = await nextServer.delete<Note>(
+    `/notes/${id}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
