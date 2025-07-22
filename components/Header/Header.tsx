@@ -3,7 +3,7 @@
 import css from './Header.module.css';
 import Link from 'next/link';
 import TagsMenu from '../TagsMenu/TagsMenu';
-import { getTags } from '@/lib/api';
+import { getTags } from '@/lib/api/api';
 
 const Header = async () => {
  const tags = await getTags();

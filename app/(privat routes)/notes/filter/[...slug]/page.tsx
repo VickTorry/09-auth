@@ -1,7 +1,7 @@
 // ✅ app/notes/filter/[...slug]/page.tsx
 
 import NotesClient from './Notes.client';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/api';
 
 
 type Props = {

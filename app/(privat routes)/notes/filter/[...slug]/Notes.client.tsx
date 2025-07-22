@@ -4,7 +4,7 @@ import { useState, KeyboardEvent } from 'react';
 import { useDebounce } from 'use-debounce';
 import { useQuery } from '@tanstack/react-query';
 import { keepPreviousData } from '@tanstack/react-query';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/api';
 
 
 import css from './Notes.module.css';
@@ -15,7 +15,7 @@ import Modal from '@/components/Modal/Modal';
 import NoteList from '@/components/NoteList/NoteList';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
-import { FetchNotesResponse } from '@/lib/api';
+import { FetchNotesResponse } from '@/lib/api/api';
 
 const PER_PAGE = 12;
 
